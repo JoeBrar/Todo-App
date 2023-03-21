@@ -6,6 +6,10 @@
 body{
     font-family: 'Roboto', sans-serif;
     background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/05/Sky-Desktop-Backgrounds-Hd-Images.jpg");
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 .heading-container{
     width: 100vw;
