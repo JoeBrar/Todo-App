@@ -12,8 +12,8 @@ function onclick(e){
         delicon.classList.add("fa-trash-alt");
         delicon.addEventListener('click',deletefunc);
         var li=document.createElement('li');
-        var tncounter=document.createTextNode(`${counter}`);
-        var tninput=document.createTextNode(`. ${todoinput.value}`);
+        var tncounter=document.createTextNode(`${counter}.  `);
+        var tninput=document.createTextNode(`${todoinput.value}`);
         li.appendChild(tncounter);
         li.appendChild(tninput);
         li.appendChild(delicon);
@@ -28,7 +28,7 @@ function deletefunc(e){
     var x=1;
     alltodos.forEach((item)=>{
         item.removeChild(item.childNodes[0]);
-        var newcounter=document.createTextNode(`${x}`);
+        var newcounter=document.createTextNode(`${x}. `);
         item.prepend(newcounter);
         x++;
         console.log(item.innerText);
@@ -48,17 +48,14 @@ window.addEventListener('keydown',(e)=>{
     }
 })
 
-
-class test{
-    height=10;
-
-    func(){
-        this.func1(this.height);
+function voice(){
+    var recognition=new webkitSpeechRecognition();
+    recognition.lang="en-GB";
+    recognition.onresult=function(event){
+        console.log(event);
+        let str=event.results[0][0].transcript;
+        let str2 = str.charAt(0).toUpperCase() + str.slice(1);
+        todoinput.value=str2;
     }
-    func1(x){
-        console.log("hello");
-    }
+    recognition.start();
 }
-var testobj=new test();
-console.log(testobj.height);
-console.log(testobj.func());
