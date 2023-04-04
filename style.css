@@ -23,7 +23,7 @@ body{
 }
 .add-container, .todos-container{
     display:flex;
-    background-color: #e3e3e3;
+    //background-color: #e3e3e3;
     //box-sizing: border-box;
     align-items: center;
     justify-content: center;
