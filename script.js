@@ -21,8 +21,7 @@ function onclick(e){
         todoinput.value='';
     }
 }
-function deletefunc(e){
-    this.parentNode.remove();
+function decrementCounter(){
     counter--;
     var alltodos=document.querySelectorAll(".todos-ul li");
     var x=1;
@@ -34,6 +33,10 @@ function deletefunc(e){
         console.log(item.innerText);
         console.log(item.innerHTML);
     })
+}
+function deletefunc(e){
+    this.parentNode.remove();
+    decrementCounter();
 }
 
 delbtn.forEach((item)=>{
@@ -54,8 +57,63 @@ function voice(){
     recognition.onresult=function(event){
         console.log(event);
         let str=event.results[0][0].transcript;
-        let str2 = str.charAt(0).toUpperCase() + str.slice(1);
-        todoinput.value=str2;
+        let words=str.split(" ");
+        console.log(words);
+        if(words[0].toLowerCase()=="delete"||words[0].toLowerCase()=="remove"){
+            words.forEach((word)=>{
+                word=word.toLowerCase();
+                switch(word){
+                    case "first": case "one": case "1":
+                        ul.removeChild(ul.children[0]);
+                        decrementCounter();
+                        break;
+                    case "second": case "two": case "2":
+                        ul.removeChild(ul.children[1]);
+                        decrementCounter();
+                        break;
+                    case "third": case "three": case "3":
+                        ul.removeChild(ul.children[2]);
+                        decrementCounter();
+                        break;
+                    case "fourth": case "forth": case "four": case "4":
+                        ul.removeChild(ul.children[3]);
+                        decrementCounter();
+                        break;
+                    case "fifth": case "five": case "5":
+                        ul.removeChild(ul.children[4]);
+                        decrementCounter();
+                        break;
+                    case "sixth": case "six": case "6":
+                        ul.removeChild(ul.children[5]);
+                        decrementCounter();
+                        break;
+                    case "seventh": case "seven": case "7":
+                        ul.removeChild(ul.children[6]);
+                        decrementCounter();
+                        break;
+                    case "eighth": case "eight": case "8":
+                        ul.removeChild(ul.children[7]);
+                        decrementCounter();
+                        break;
+                    case "ninth": case "nine": case "9":
+                        ul.removeChild(ul.children[8]);
+                        decrementCounter();
+                        break;
+                    case "tenth": case "ten": case "10":
+                        ul.removeChild(ul.children[9]);
+                        decrementCounter();
+                        break;
+                    case "eleventh": case "eleven": case "11":
+                        ul.removeChild(ul.children[10]);
+                        decrementCounter();
+                        break;
+                }
+            })
+        }
+        else{
+            let str2 = str.charAt(0).toUpperCase() + str.slice(1);
+            todoinput.value=str2;
+        }
     }
     recognition.start();
 }
